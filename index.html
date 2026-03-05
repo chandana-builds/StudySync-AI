@@ -68,8 +68,8 @@
               <form id="uploadForm" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
                 <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple style="flex:1 1 180px;min-width:120px;">
                 <input type="text" id="materialTitle" placeholder="Title for your material" style="flex:2 1 220px;min-width:120px;">
-                <button type="button" onclick="uploadMaterial()" style="flex:0 1 auto;">Upload</button>
-                <button type="button" onclick="skipUpload()" style="flex:0 1 auto;background:#eee;color:#333;border:1px solid #ccc;margin-left:4px;">Skip</button>
+                <button type="button" id="uploadBtn" style="flex:0 1 auto;">Upload</button>
+                <button type="button" id="skipBtn" style="flex:0 1 auto;background:#eee;color:#333;border:1px solid #ccc;margin-left:4px;">Skip</button>
               </form>
               <div id="materialsList" style="margin-top:16px;">
                 <!-- Uploaded materials will appear here -->
