@@ -6,23 +6,15 @@
   <title>StudySync AI - Learning Platform</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<!-- Netlify Neon Database Integration Instructions -->
-<section class="container" style="margin-top:24px;">
-  <h2>Netlify Neon Database Integration</h2>
-  <p>This site uses Netlify DB via Neon. To query your database, use the <code>@netlify/neon</code> package and the following code:</p>
-  <pre style="background:#f4f4f4;padding:12px;border-radius:6px;overflow-x:auto;"><code>import { neon } from '@netlify/neon';
+<body>
 
 <!-- Navigation Bar -->
 <nav class="navbar">
-  <p>Make sure your environment variables <strong>NETLIFY_DATABASE_URL</strong> and <strong>NETLIFY_DATABASE_URL_UNPOOLED</strong> are set in Netlify dashboard.</p>
-  <p>See <a href="https://docs.netlify.com" target="_blank">Netlify documentation</a> for more details.</p>
-</section>
-</body>
   <div class="logo">📚 StudySync AI</div>
   <ul>
-    <li><a href="#registrationPage">Register</a></li>
-    <li><a href="#materialsSection">Study Materials</a></li>
-    <li><a href="#coursesSection">Courses</a></li>
+    <li><a href="#" onclick="showPage('registrationPage')">Register</a></li>
+    <li><a href="#" onclick="showPage('materialsSection')">Study Materials</a></li>
+    <li><a href="#" onclick="showPage('dashboardPage')">Dashboard</a></li>
   </ul>
 </nav>
 
@@ -56,36 +48,11 @@
         </div>
         <button type="button" onclick="nextStep(2)">Next →</button>
       </div>
+
       <!-- Step 2 -->
       <div id="step2" class="form-step hidden">
         <h2>Step 2: Course</h2>
         <div>
-          <!-- Study Materials Section -->
-          <section id="materialsSection" class="page">
-            <div class="container">
-              <h2>Study Materials</h2>
-              <p>Share and access PDFs, notes, and resources to make studying easier!</p>
-              <form id="uploadForm" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
-                <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple style="flex:1 1 180px;min-width:120px;">
-                <input type="text" id="materialTitle" placeholder="Title for your material" style="flex:2 1 220px;min-width:120px;">
-                <button type="button" id="uploadBtn" style="flex:0 1 auto;">Upload</button>
-                <button type="button" id="skipBtn" style="flex:0 1 auto;background:#eee;color:#333;border:1px solid #ccc;margin-left:4px;">Skip</button>
-              </form>
-              <div id="materialsList" style="margin-top:16px;">
-                <!-- Uploaded materials will appear here -->
-              </div>
-            </div>
-          </section>
-
-          <!-- Courses Section (placeholder for lessons) -->
-          <section id="coursesSection" class="page">
-            <div class="container">
-              <h2>Courses & Lessons</h2>
-              <div id="coursesContent">
-                <!-- Course and lesson content will be dynamically loaded here -->
-              </div>
-            </div>
-          </section>
           <label>Subject/Branch:</label>
           <select id="courseSelect" required>
             <option value="">Select</option>
@@ -127,6 +94,23 @@
     </form>
   </div>
 </div>
+
+<!-- Study Materials Section -->
+<section id="materialsSection" class="page hidden">
+  <div class="container">
+    <h2>Study Materials</h2>
+    <p>Share and access PDFs, notes, and resources to make studying easier!</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px;">
+      <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple style="flex:1 1 180px;min-width:120px;padding:8px;border:1px solid #e0e0e0;border-radius:6px;">
+      <input type="text" id="materialTitle" placeholder="Title for your material" style="flex:2 1 220px;min-width:120px;padding:8px;border:1px solid #e0e0e0;border-radius:6px;">
+      <button type="button" id="uploadBtn" style="flex:0 1 auto;padding:8px 18px;border-radius:6px;border:none;background:#667eea;color:#fff;font-weight:500;cursor:pointer;">Upload</button>
+      <button type="button" id="skipBtn" style="flex:0 1 auto;padding:8px 18px;border-radius:6px;border:1px solid #ccc;background:#eee;color:#333;font-weight:500;cursor:pointer;">Skip</button>
+    </div>
+    <div id="materialsList" style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+      <!-- Uploaded materials will appear here -->
+    </div>
+  </div>
+</section>
 
 <!-- DASHBOARD PAGE -->
 <div id="dashboardPage" class="page hidden">

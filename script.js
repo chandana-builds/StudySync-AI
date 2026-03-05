@@ -1,3 +1,99 @@
+// ===== STUDY MATERIALS LOGIC =====
+function uploadMaterial() {
+  try {
+    const fileInput = document.getElementById('materialFile');
+    const titleInput = document.getElementById('materialTitle');
+    const materialsList = document.getElementById('materialsList');
+    
+    if (!fileInput || !titleInput) {
+      console.error('File or title input not found');
+      return;
+    }
+    
+    if (!fileInput.files.length || !titleInput.value.trim()) {
+      alert('Please select a file and enter a title.');
+      return;
+    }
+    
+    for (let i = 0; i < fileInput.files.length; i++) {
+      const file = fileInput.files[i];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const url = e.target.result;
+        const item = document.createElement('div');
+        item.className = 'material-item';
+        item.innerHTML = '<strong>' + titleInput.value + '</strong> <a href="' + url + '" download="' + file.name + '">Download</a>';
+        if (materialsList) {
+          materialsList.appendChild(item);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+    titleInput.value = '';
+    fileInput.value = '';
+    alert('✓ Materials uploaded successfully!');
+  } catch (error) {
+    console.error('Error uploading material:', error);
+    alert('Error uploading material: ' + error.message);
+  }
+}
+
+function skipUpload() {
+  try {
+    const fileInput = document.getElementById('materialFile');
+    const titleInput = document.getElementById('materialTitle');
+    if (fileInput) fileInput.value = '';
+    if (titleInput) titleInput.value = '';
+    alert('Upload skipped. You can continue.');
+  } catch (error) {
+    console.error('Error in skipUpload:', error);
+  }
+}
+
+function showPage(pageId) {
+  try {
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.add('hidden');
+    });
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+      targetPage.classList.remove('hidden');
+    }
+    window.scrollTo(0, 0);
+  } catch (error) {
+    console.error('Error showing page:', error);
+  }
+}
+
+// ===== DATABASE INTEGRATION =====
+async function saveUserToDatabase(userData) {
+  try {
+    const response = await fetch('/.netlify/functions/saveUser', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
+    });
+    const result = await response.json();
+    console.log('User saved to database:', result);
+    return result;
+  } catch (error) {
+    console.error('Error saving user to database:', error);
+    return null;
+  }
+}
+
+async function getUserFromDatabase(userId) {
+  try {
+    const response = await fetch('/.netlify/functions/getUser?id=' + userId);
+    const result = await response.json();
+    console.log('User retrieved from database:', result);
+    return result;
+  } catch (error) {
+    console.error('Error retrieving user from database:', error);
+    return null;
+  }
+}
+
 // ===== DATA =====
 const courseData = {
   school: { subjects: ['Mathematics', 'Science', 'English', 'History'] },
@@ -709,7 +805,7 @@ function skipUpload() {
 }
 
 // ===== REGISTRATION =====
-function handleRegistration(e) {
+async function handleRegistration(e) {
   try {
     console.log('Form submitted!');
     e.preventDefault();
@@ -744,6 +840,14 @@ function handleRegistration(e) {
     
     localStorage.setItem('studySyncUser', JSON.stringify(userState));
     console.log('Data saved to localStorage');
+    
+    // Save to database
+    const dbResult = await saveUserToDatabase(userState);
+    if (dbResult && dbResult.success) {
+      console.log('User saved to database successfully');
+    } else {
+      console.warn('Database save failed, but local storage worked');
+    }
     
     alert('Welcome ' + userState.username + '! Account created.');
     showDashboardPage();
@@ -1114,6 +1218,54 @@ function sendMessage() {
   } catch (error) {
     console.error('Error in sendMessage:', error);
   }
+}
+
+// ===== INITIALIZATION =====
+window.addEventListener('load', () => {
+  try {
+    console.log('Initializing StudySync...');
+    
+    // Attach upload and skip button event listeners
+    const uploadBtn = document.getElementById('uploadBtn');
+    if (uploadBtn) {
+      uploadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        uploadMaterial();
+      });
+      console.log('Upload button listener attached');
+    } else {
+      console.error('Upload button not found');
+    }
+    
+    const skipBtn = document.getElementById('skipBtn');
+    if (skipBtn) {
+      skipBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        skipUpload();
+      });
+      console.log('Skip button listener attached');
+    } else {
+      console.error('Skip button not found');
+    }
+    
+    // Show registration page by default
+    const registrationPage = document.getElementById('registrationPage');
+    if (registrationPage) {
+      registrationPage.classList.remove('hidden');
+      console.log('Registration page shown');
+    }
+    
+    // Hide other pages
+    const materialsSection = document.getElementById('materialsSection');
+    const dashboardPage = document.getElementById('dashboardPage');
+    if (materialsSection) materialsSection.classList.add('hidden');
+    if (dashboardPage) dashboardPage.classList.add('hidden');
+    
+    console.log('StudySync initialization complete');
+  } catch (error) {
+    console.error('Error during initialization:', error);
+  }
+});
 }
 
 function addChatMessage(text, type) {

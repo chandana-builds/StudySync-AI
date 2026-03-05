@@ -1,0 +1,24 @@
+{
+  "name": "studysync-ai",
+  "version": "1.0.0",
+  "description": "Educational learning platform with study materials and database integration",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build needed for static site'",
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/neon": "^0.2.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "education",
+    "learning",
+    "study",
+    "netlify",
+    "database"
+  ],
+  "author": "Chandana",
+  "license": "MIT"
+}
