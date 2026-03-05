@@ -65,32 +65,31 @@ function showPage(pageId) {
   }
 }
 
-// ===== DATABASE INTEGRATION =====
+// ===== DATABASE INTEGRATION (Local Storage) =====
 async function saveUserToDatabase(userData) {
   try {
-    const response = await fetch('/.netlify/functions/saveUser', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
-    });
-    const result = await response.json();
-    console.log('User saved to database:', result);
-    return result;
+    // Save to localStorage
+    localStorage.setItem('studySyncUser', JSON.stringify(userData));
+    console.log('User saved to local storage:', userData);
+    return { success: true, data: userData };
   } catch (error) {
-    console.error('Error saving user to database:', error);
-    return null;
+    console.error('Error saving user:', error);
+    return { success: false };
   }
 }
 
 async function getUserFromDatabase(userId) {
   try {
-    const response = await fetch('/.netlify/functions/getUser?id=' + userId);
-    const result = await response.json();
-    console.log('User retrieved from database:', result);
-    return result;
+    const userData = localStorage.getItem('studySyncUser');
+    if (userData) {
+      const user = JSON.parse(userData);
+      console.log('User retrieved from local storage:', user);
+      return { success: true, data: user };
+    }
+    return { success: false };
   } catch (error) {
-    console.error('Error retrieving user from database:', error);
-    return null;
+    console.error('Error retrieving user:', error);
+    return { success: false };
   }
 }
 

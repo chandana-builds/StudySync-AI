@@ -1,23 +1,21 @@
 {
   "name": "studysync-ai",
   "version": "1.0.0",
-  "description": "Educational learning platform with study materials and database integration",
+  "description": "Educational learning platform with study materials",
   "main": "index.html",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'No build needed for static site'",
-    "start": "netlify dev"
+    "dev": "vercel dev",
+    "build": "echo 'Building StudySync AI'",
+    "start": "node server.js"
   },
-  "dependencies": {
-    "@netlify/neon": "^0.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "keywords": [
     "education",
     "learning",
     "study",
-    "netlify",
-    "database"
+    "vercel",
+    "students"
   ],
   "author": "Chandana",
   "license": "MIT"
