@@ -201,18 +201,26 @@ body {
   box-shadow: 0 2px 16px rgba(102,126,234,0.08);
 }
 
-#materialsSection h2 {
+.container-materials {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.container-materials h2 {
   font-size: 26px;
   margin-bottom: 10px;
   color: var(--text-dark);
 }
 
-#materialsSection > p {
+.container-materials > p {
   color: var(--text-light);
   margin-bottom: 20px;
 }
 
-#materialsSection > div {
+.materials-input {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -220,25 +228,25 @@ body {
   margin-bottom: 20px;
 }
 
-#materialsSection input[type="file"],
-#materialsSection input[type="text"] {
+.materials-input input[type="file"],
+.materials-input input[type="text"] {
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
 }
 
-#materialsSection input[type="file"] {
+.materials-input input[type="file"] {
   flex: 1 1 180px;
   min-width: 120px;
 }
 
-#materialsSection input[type="text"] {
+.materials-input input[type="text"] {
   flex: 2 1 220px;
   min-width: 120px;
 }
 
-#materialsSection button {
+.materials-input button {
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
@@ -251,6 +259,7 @@ body {
 #uploadBtn {
   background: var(--primary);
   color: white;
+  flex: 0 1 auto;
 }
 
 #uploadBtn:hover {
@@ -261,16 +270,18 @@ body {
   background: #eee;
   color: #333;
   border: 1px solid var(--border);
+  flex: 0 1 auto;
 }
 
 #skipBtn:hover {
   background: #ddd;
 }
 
-#materialsList {
+.materials-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 16px;
 }
 
 .material-item {

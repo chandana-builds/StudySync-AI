@@ -97,16 +97,16 @@
 
 <!-- Study Materials Section -->
 <section id="materialsSection" class="page hidden">
-  <div class="container">
+  <div class="container-materials">
     <h2>Study Materials</h2>
     <p>Share and access PDFs, notes, and resources to make studying easier!</p>
-    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px;">
-      <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple style="flex:1 1 180px;min-width:120px;padding:8px;border:1px solid #e0e0e0;border-radius:6px;">
-      <input type="text" id="materialTitle" placeholder="Title for your material" style="flex:2 1 220px;min-width:120px;padding:8px;border:1px solid #e0e0e0;border-radius:6px;">
-      <button type="button" id="uploadBtn" style="flex:0 1 auto;padding:8px 18px;border-radius:6px;border:none;background:#667eea;color:#fff;font-weight:500;cursor:pointer;">Upload</button>
-      <button type="button" id="skipBtn" style="flex:0 1 auto;padding:8px 18px;border-radius:6px;border:1px solid #ccc;background:#eee;color:#333;font-weight:500;cursor:pointer;">Skip</button>
+    <div class="materials-input">
+      <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple>
+      <input type="text" id="materialTitle" placeholder="Title for your material">
+      <button type="button" id="uploadBtn">Upload</button>
+      <button type="button" id="skipBtn">Skip</button>
     </div>
-    <div id="materialsList" style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+    <div id="materialsList" class="materials-list">
       <!-- Uploaded materials will appear here -->
     </div>
   </div>
@@ -114,17 +114,6 @@
 
 <!-- DASHBOARD PAGE -->
 <div id="dashboardPage" class="page hidden">
-  <nav class="navbar">
-    <div class="nav-center">
-      <div class="logo">📚 StudySync AI</div>
-      <span id="userName"></span>
-    </div>
-    <div class="nav-right">
-      <button class="btn-settings" onclick="openSettings()">⚙️ Settings</button>
-      <button class="btn-logout" onclick="logout()">🚪 Logout</button>
-    </div>
-  </nav>
-
   <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
