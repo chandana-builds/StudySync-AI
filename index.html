@@ -8,13 +8,21 @@
 </head>
 <body>
 
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="logo">📚 StudySync AI</div>
+  <ul>
+    <li><a href="#registrationPage">Register</a></li>
+    <li><a href="#materialsSection">Study Materials</a></li>
+    <li><a href="#coursesSection">Courses</a></li>
+  </ul>
+</nav>
+
 <!-- REGISTRATION PAGE -->
 <div id="registrationPage" class="page">
   <div class="container">
-    <div class="logo">📚 StudySync AI</div>
     <h1>Welcome</h1>
     <p>Adaptive Learning Platform</p>
-
     <form id="registrationForm">
       <!-- Step 1 -->
       <div id="step1" class="form-step active">
@@ -24,13 +32,11 @@
           <input type="text" id="username" placeholder="Enter username" required>
           <span id="usernameError" class="error"></span>
         </div>
-        
         <div>
           <label>School/College:</label>
           <input type="text" id="schoolName" placeholder="School name" required>
           <span id="schoolError" class="error"></span>
         </div>
-        
         <div>
           <label>Student Type:</label>
           <select id="studentType" onchange="updateSubjects()" required>
@@ -40,14 +46,37 @@
           </select>
           <span id="studentError" class="error"></span>
         </div>
-
         <button type="button" onclick="nextStep(2)">Next →</button>
       </div>
-
       <!-- Step 2 -->
       <div id="step2" class="form-step hidden">
         <h2>Step 2: Course</h2>
         <div>
+          <!-- Study Materials Section -->
+          <section id="materialsSection" class="page">
+            <div class="container">
+              <h2>Study Materials</h2>
+              <p>Share and access PDFs, notes, and resources to make studying easier!</p>
+              <form id="uploadForm">
+                <input type="file" id="materialFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt" multiple>
+                <input type="text" id="materialTitle" placeholder="Title for your material">
+                <button type="button" onclick="uploadMaterial()">Upload</button>
+              </form>
+              <div id="materialsList">
+                <!-- Uploaded materials will appear here -->
+              </div>
+            </div>
+          </section>
+
+          <!-- Courses Section (placeholder for lessons) -->
+          <section id="coursesSection" class="page">
+            <div class="container">
+              <h2>Courses & Lessons</h2>
+              <div id="coursesContent">
+                <!-- Course and lesson content will be dynamically loaded here -->
+              </div>
+            </div>
+          </section>
           <label>Subject/Branch:</label>
           <select id="courseSelect" required>
             <option value="">Select</option>
