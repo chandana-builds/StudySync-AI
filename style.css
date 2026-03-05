@@ -78,6 +78,43 @@ body {
 #materialsSection {
   margin-top: 32px;
 }
+
+#uploadForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 0;
+}
+#uploadForm input[type="file"],
+#uploadForm input[type="text"] {
+  min-width: 120px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+#uploadForm button {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#uploadForm button:hover {
+  background: var(--secondary);
+}
+#uploadForm button:last-child {
+  background: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+}
+#uploadForm button:last-child:hover {
+  background: #ddd;
+}
+}
 #materialsList {
   margin-top: 16px;
   display: flex;

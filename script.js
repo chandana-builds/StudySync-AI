@@ -699,6 +699,12 @@ function updateSubjects() {
       opt.textContent = s;
       select.appendChild(opt);
     });
+
+function skipUpload() {
+  document.getElementById('materialFile').value = '';
+  document.getElementById('materialTitle').value = '';
+  alert('Skipped uploading. You can continue.');
+}
   }
 }
 
